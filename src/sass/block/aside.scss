@@ -1,0 +1,68 @@
+
+.aside {
+    position: fixed;
+    top: 15px;
+    right: 0;
+    bottom: 15px;
+    display: flex;
+    padding-left: 15px;
+    transition: transform .3s;
+
+    &.visible {
+        transform: translateX(calc(100% - 15px));
+    }
+}
+
+.aside__close {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 15px;
+    height: 100px;
+    background-color: #000;
+    border-radius: 30px 0 0 30px;
+    cursor: pointer;
+}
+
+.aside__body {
+    background-color: #fff;
+    padding: 15px;
+}
+
+.aside__tile {
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 26px;
+}
+
+.aside__item {
+    & + & {
+        margin-top: 15px;
+    }
+}
+
+.aside__field {
+    display: block;
+
+    select {
+        width: 100%;
+        max-height: 60px;
+        overflow: auto;
+    }
+}
+
+.aside__field-name {
+    font-style: italic;
+    margin-bottom: 3px;
+    color: #7b7b7b;
+}
+
+.aside__newCard {
+    padding: 10px;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    font-size: 12px;
+    text-transform: uppercase;
+    cursor: pointer;
+}

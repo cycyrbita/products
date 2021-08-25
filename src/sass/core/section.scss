@@ -1,0 +1,34 @@
+
+.section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background-color: #fff;
+}
+
+@media (max-width: 1310px) {
+    .section {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .section__title {
+        font-size: 44px;
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .section__title {
+        font-size: 38px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section__title {
+        font-size: 30px;
+    }
+}
