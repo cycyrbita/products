@@ -3,84 +3,84 @@
 <%- include('block/head') %>
 
 <body>
-    <div class="filter">
-        <div class="products">
-            <div class="products__item">
-                <div class="products__head">
-                    <div class="products__head-item">Название: <span>Дианол</span></div>
-                    <div class="products__head-item">Тема: <span>Похудение</span></div>
-                    <div class="products__head-item">Страна: <span>Россия</span></div>
-                    <div class="products__close"></div>
+    <div class="page-products">
+        <div class="container-fluid">
+            <div class="page-products__body">
+                <div class="products">
+                    <div class="products__item">
+                        <div class="products__head">
+                            <div class="products__head-item">Продукт</div>
+                            <div class="products__head-item">Тема</div>
+                            <div class="products__head-item">Страна</div>
+                            <div class="products__head-edits js-products__head-edits"></div>
+                        </div>
+                        <div class="products__body">
+                            <div class="products__media"><img src="../media/products/img-1.jpg" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="products__item">
+                        <div class="products__head">
+                            <div class="products__head-item">Продукт</div>
+                            <div class="products__head-item">Тема</div>
+                            <div class="products__head-item">Страна</div>
+                            <div class="products__head-edits js-products__head-edits"></div>
+                        </div>
+                        <div class="products__body">
+                            <div class="products__media"><img src="../media/products/img-1.jpg" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="products__item">
+                        <div class="products__head">
+                            <div class="products__head-item">Продукт</div>
+                            <div class="products__head-item">Тема</div>
+                            <div class="products__head-item">Страна</div>
+                            <div class="products__head-edits js-products__head-edits"></div>
+                        </div>
+                        <div class="products__body">
+                            <div class="products__media"><img src="../media/products/img-1.jpg" alt=""></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="products__body">
-                    <div class="products__slide"><img src="../media/products/img-1.jpg" alt=""></div>
-                </div>
-            </div>
-            <div class="products__item">
-                <div class="products__head">
-                    <div class="products__head-item">Название: <span>Визиол</span></div>
-                    <div class="products__head-item">Тема: <span>Зрение</span></div>
-                    <div class="products__head-item">Страна: <span>Америка</span></div>
-                    <div class="products__close"></div>
-                </div>
-                <div class="products__body">
-                    <div class="products__slide"><img src="../media/products/img-2.jpg" alt=""></div>
-                </div>
-            </div>
-            <div class="products__item">
-                <div class="products__head">
-                    <div class="products__head-item">Название: <span>Рекардио</span></div>
-                    <div class="products__head-item">Тема: <span>Гипертония</span></div>
-                    <div class="products__head-item">Страна: <span>Мексика</span></div>
-                    <div class="products__close"></div>
-                </div>
-                <div class="products__body">
-                    <div class="products__slide"><img src="../media/products/img-3.jpg" alt=""></div>
-                </div>
-            </div>
-        </div>
-        <div class="aside">
-            <div class="aside__close"></div>
-            <div class="aside__body">
-                <div class="aside__tile">Фильтр упаковок</div>
-                <div class="aside__item">
-                    <label class="aside__field">
-                        <div class="aside__field-name">Поиск</div>
-                        <input type="text">
-                    </label>
-                </div>
-                <div class="aside__item">
-                    <label class="aside__field">
-                        <div class="aside__field-name">Название</div>
-                        <select multiple="multiple">
-                            <option value="Дианол">Дианол</option>
-                            <option value="Визиол">Визиол</option>
-                            <option value="Рекардио">Рекардио</option>
-                        </select>
-                    </label>
-                </div>
-                <div class="aside__item">
-                    <label class="aside__field">
-                        <div class="aside__field-name">Тема</div>
-                        <select multiple="multiple">
-                            <option value="Зрение">Зрение</option>
-                            <option value="Гипертония">Гипертония</option>
-                            <option value="Похудение">Похудение</option>
-                        </select>
-                    </label>
-                </div>
-                <div class="aside__item">
-                    <label class="aside__field">
-                        <div class="aside__field-name">Страна</div>
-                        <select multiple="multiple">
-                            <option value="Америка">Америка</option>
-                            <option value="Мексика">Мексика</option>
-                            <option value="Россия">Россия</option>
-                        </select>
-                    </label>
-                </div>
-                <div class="aside__item">
-                    <div class="aside__newCard">Добавить карточку</div>
+                <div class="filter js-filter">
+                    <div class="filter__close js-filter__close"></div>
+                    <div class="filter__body">
+                        <div class="filter__item">
+                            <label>
+                                <input type="text" placeholder="Поиск">
+                            </label>
+                        </div>
+                        <div class="filter__item">
+                            <label>
+                                <p class="filter__item-title">Название</p>
+                                <select multiple="multiple" name="name">
+                                    <option value="Artrovex" selected="">Artrovex</option>
+                                    <option value="Alcotox">Alcotox</option>
+                                    <option value="Cardiol">Cardiol</option>
+                                    <option value="Iconskin">Iconskin</option>
+                                    <option value="Смайлик">Смайлик</option>
+                                    <option value="Removio">Removio</option>
+                                    <option value="Животное">Животное</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="filter__item">
+                            <label>
+                                <p class="filter__item-title">Тема</p>
+                                <select multiple="multiple" name="them">
+                                    <option value="Artrovex" selected="">Artrovex</option>
+                                    <option value="Alcotox">Alcotox</option>
+                                    <option value="Cardiol">Cardiol</option>
+                                    <option value="Iconskin">Iconskin</option>
+                                    <option value="Смайлик">Смайлик</option>
+                                    <option value="Removio">Removio</option>
+                                    <option value="Животное">Животное</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="filter__item">
+                            <button class="filter__btn js-filter__btn">Добавить</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
