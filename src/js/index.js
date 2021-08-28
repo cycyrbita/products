@@ -1,5 +1,8 @@
 
 $(document).ready(function() {
+    // вставляем карточки
+    cards(arr);
+
     // показываем и скрываем фильтр
     $('.js-filter__close').click(function() {
         $('.js-filter').toggleClass('visible');
