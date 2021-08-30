@@ -14,7 +14,4 @@ $(document).ready(function() {
     // показываем модальное окно
     modal('.modal', '.js-products__head-edits', 'products');
     modal('.modal', '.js-filter__btn', 'newCard');
-
-    // проверяем на наличие пустых полей
-    checkFields('.products-modal__item input');
 });

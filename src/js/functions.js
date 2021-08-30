@@ -74,8 +74,8 @@ function cards(arr) {
 // вставляем модалку + логика закрытия и открытия
 function modal(modal, open, nameModal) {
     let allModal = {
-        products: '<div class="modal modal_products"><div class="modal__wrap"><div class="modal__close js-modal__close"></div><div class="products-modal"><div class="products-modal__item"><label><p>Меняем название</p><input type="text" name="name"></label></div><div class="products-modal__item"><label><p>Меняем тему</p><input type="text" name="them"></label></div><div class="products-modal__item"><label><p>Меняем страну</p><input type="text" name="country"></label></div><div class="products-modal__item"><label><input type="file" name="file"></label></div><div class="products-modal__item"><div class="products-modal__delete js-modal__delete"></div></div><div class="products-modal__item"><button class="js-products-modal__btn">Изменить</button></div></div></div></div>',
-        newCard: '<div class="modal modal_products"><div class="modal__wrap"><div class="modal__close js-modal__close"></div><div class="products-modal"><div class="products-modal__item"><label><p>Название</p><input type="text" name="name"></label></div><div class="products-modal__item"><label><p>Тема</p><input type="text" name="them"></label></div><div class="products-modal__item"><label><p>Страна</p><input type="text" name="country"></label></div><div class="products-modal__item"><label><input type="file" name="file"></label></div><div class="products-modal__item"><button class="js-products-modal__btn">Изменить</button></div></div></div></div>'
+        products: '<div class="modal modal_products"><div class="modal__wrap"><div class="modal__close js-modal__close"></div><div class="products-modal"><div class="products-modal__item"><label><p>Меняем название</p><input type="text" name="name"></label></div><div class="products-modal__item"><label><p>Меняем тему</p><input type="text" name="them"></label></div><div class="products-modal__item"><label><p>Меняем страну</p><input type="text" name="country"></label></div><div class="products-modal__item"><label><input type="file" name="file"></label></div><div class="products-modal__item"><div class="products-modal__delete js-modal__delete"></div></div><div class="products-modal__item"><button class="js-editsCard">Изменить</button></div></div></div></div>',
+        newCard: '<div class="modal modal_products"><div class="modal__wrap"><div class="modal__close js-modal__close"></div><div class="products-modal"><div class="products-modal__item"><label><p>Название</p><input type="text" name="name"></label></div><div class="products-modal__item"><label><p>Тема</p><input type="text" name="them"></label></div><div class="products-modal__item"><label><p>Страна</p><input type="text" name="country"></label></div><div class="products-modal__item"><label><input type="file" name="file"></label></div><div class="products-modal__item"><button class="js-newCard">Изменить</button></div></div></div></div>'
     }
 
     // текущий id
@@ -114,6 +114,21 @@ function modal(modal, open, nameModal) {
             $('body, html').css('overflow', 'visible');
         }
     });
+
+    // редактируем карточку
+    $('body').on('click', '.js-editsCard', function() {
+        let name = '',
+            them = '',
+            country = '';
+        let field = $(this).parents('.products-modal').find('.products-modal__item input[type="text"]');
+        checkFields(field);
+        if(!$(field).hasClass('error')) {
+            name = $(this).parents('.products-modal').find('.products-modal__item input[name="name"]').val();
+            them = $(this).parents('.products-modal').find('.products-modal__item input[name="them"]').val();
+            country = $(this).parents('.products-modal').find('.products-modal__item input[name="country"]').val();
+            console.log(name, them, country);
+        }
+    })
 }
 
 // проверка на заполненность полей
@@ -128,4 +143,3 @@ function checkFields(elem) {
         }
     })
 }
-
