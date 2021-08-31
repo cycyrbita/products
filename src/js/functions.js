@@ -57,9 +57,9 @@ function cards(arr) {
     $.each(arr, function(i) {
         htmlCard += `<div class="products__item" data-id="${arr[i]['id']}">
                         <div class="products__head">
-                            <div class="products__head-item">${arr[i]['name']}</div>
-                            <div class="products__head-item">${arr[i]['them']}</div>
-                            <div class="products__head-item">${arr[i]['country']}</div>
+                            <div class="products__head-item name">${arr[i]['name']}</div>
+                            <div class="products__head-item them">${arr[i]['them']}</div>
+                            <div class="products__head-item country">${arr[i]['country']}</div>
                             <div class="products__head-edits js-products__head-edits"></div>
                         </div>
                         <div class="products__body">
@@ -127,19 +127,6 @@ function modal(modal, open, nameModal) {
             them = $(this).parents('.products-modal').find('.products-modal__item input[name="them"]').val();
             country = $(this).parents('.products-modal').find('.products-modal__item input[name="country"]').val();
             console.log(name, them, country);
-        }
-    })
-}
-
-// проверка на заполненность полей
-function checkFields(elem) {
-    $(elem).each(function() {
-        if($(this).val() == '' && $(this).val() == 0) {
-            $(this).addClass('error');
-            $(this).removeClass('success');
-        } else {
-            $(this).removeClass('error');
-            $(this).addClass('success');
         }
     })
 }
