@@ -46,7 +46,14 @@ let arr = [
         "id": "13",
         "name": "Животное",
         "them": "Лень",
-        "country": "Гламур",
+        "country": "Россия",
+        "img": "../media/2021_08_26_18_36_46586258.jpg"
+    },
+    {
+        "id": "13",
+        "name": "Животное",
+        "them": "Лень",
+        "country": "Америка",
         "img": "../media/2021_08_26_18_36_46586258.jpg"
     }
 ];
@@ -58,22 +65,23 @@ let allModal = {
 }
 
 // функция HTML карточки
-function card(data) {
-    data = '';
-    $.each(arr, function(i) {
+function card(newArr) {
+    let data = '';
+    $.each(newArr, function(i) {
         data += `
-            <div class="products__item" data-id="${arr[i]['id']}">
+            <div class="products__item" data-id="${newArr[i]['id']}">
                 <div class="products__head">
-                    <div class="products__head-item name">${arr[i]['name']}</div>
-                    <div class="products__head-item them">${arr[i]['them']}</div>
-                    <div class="products__head-item country">${arr[i]['country']}</div>
+                    <div class="products__head-item name">${newArr[i]['name']}</div>
+                    <div class="products__head-item them">${newArr[i]['them']}</div>
+                    <div class="products__head-item country">${newArr[i]['country']}</div>
                     <div class="products__head-edits js-products__head-edits"></div>
                 </div>
                 <div class="products__body">
-                    <div class="products__media"><img src="${arr[i]['img']}" alt=""></div>
+                    <div class="products__media"><img src="${newArr[i]['img']}" alt=""></div>
                 </div>
             </div>`;
     })
+    $('.products').html('');
     $('.products').append(data);
 }
 
@@ -90,11 +98,51 @@ function checkFields(elem) {
     })
 }
 
+// фильтр
+function filter() {
+    // создаем переменные
+    let name = $('.filter__item select[name="name"]').val(),
+        them = $('.filter__item select[name="them"]').val(),
+        country = $('.filter__item select[name="country"]').val(),
+        arrFilter;
+
+        // пробегаемся по массиву в поисках нужного)))
+        arrFilter = arr.filter(function(i) {
+            // console.log(i);
+            return i.name == name && i.them == them && i.country == country;
+        })
+
+    // выводим карточки
+    card(arrFilter);
+
+    // при изменении полей фильтра
+    $('.filter__item select').change(function() {
+        // перезаписываем переменные
+        name = $('.filter__item select[name="name"]').val(),
+        them = $('.filter__item select[name="them"]').val(),
+        country = $('.filter__item select[name="country"]').val(),
+        arrFilter == [];
+
+        // пробегаемся по массиву в поисках нужного)))
+        $.each(arr, function(i) {
+            $.each(name, function(j) {
+                if(arr[i].name == name[j]) {
+                    arrFilter.push(arr[i]);
+                }
+            })
+        })
+        console.log(arrFilter);
+
+        // и снова выводим карточки
+        card(arrFilter);
+    })
+}
+
 $(document).ready(function() {
     $('input, select, textarea').styler();
     
     // выводим карточки
-    card(arr);
+    filter();
 
     // открываем модалку редактирования карточки
     $('body').on('click', '.js-products__head-edits', function() {
@@ -149,6 +197,62 @@ $(document).ready(function() {
             $.ajax({
                 type: 'POST',
                 url: 'edit.php',
+                data: formData,
+                dataType: 'json',
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    img = data;
+                }
+            });
+
+            // проставляем новые значения
+            $('.products__item[data-id="'+id+'"]').find('.products__head-item.name').text(name);
+            $('.products__item[data-id="'+id+'"]').find('.products__head-item.them').text(them);
+            $('.products__item[data-id="'+id+'"]').find('.products__head-item.country').text(country);
+            $('.products__item[data-id="'+id+'"]').addClass('edits');
+
+            $.each(arr, function(i) {
+                if(arr[i]['id'] == id) {
+                    arr[i].name = name;
+                    arr[i].them = them;
+                    arr[i].country = country;
+                    arr[i].img = img;
+                    return;
+                }
+            })
+
+            // удаляем модалку
+            $(this).parents('.modal').remove();
+        }
+    })
+
+    // подтверждаем добавление карточки
+    $('body').on('click', '.js-newCard', function() {
+        let name = '',
+            them = '',
+            country = '',
+            img = '',
+            id = $(this).parents('.modal').attr('data-id'),
+            field = $(this).parents('.products-modal').find('.products-modal__item input[type="text"]');
+
+        // проверка полей
+        checkFields(field);
+
+        if(!$(field).hasClass('error')) {
+            // заносим значения в переменные
+            name = $(this).parents('.products-modal').find('.products-modal__item input[name="name"]').val();
+            them = $(this).parents('.products-modal').find('.products-modal__item input[name="them"]').val();
+            country = $(this).parents('.products-modal').find('.products-modal__item input[name="country"]').val();
+            img = $(this).parents('.products-modal').find('.products-modal__item input[name="file"]')[0].files[0];
+
+            // отправляем на сервер картику и получаем путь до нее
+            let formData = new FormData();
+            formData.append('img', img);
+            $.ajax({
+                type: 'POST',
+                url: 'add.php',
                 data: formData,
                 dataType: 'json',
                 cache: false,
