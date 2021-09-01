@@ -11,7 +11,7 @@ let arr = [
         "id": "8",
         "name": "Alcotox",
         "them": "Алкоголь",
-        "country": "ЕС",
+        "country": "Мексика",
         "img": "../media/2021_08_26_18_23_43184607.png"
     },
     {
@@ -32,7 +32,7 @@ let arr = [
         "id": "11",
         "name": "Смайлик",
         "them": "Ржач",
-        "country": "На весь мир",
+        "country": "Америка",
         "img": "../media/2021_08_26_18_28_02338005.png"
     },
     {
@@ -104,11 +104,13 @@ function filter() {
     let name = $('.filter__item select[name="name"]').val(),
         them = $('.filter__item select[name="them"]').val(),
         country = $('.filter__item select[name="country"]').val(),
-        arrFilter;
+        name2 = '',
+        them2 = '',
+        country2 = '',
+        arrFilter = [];
 
         // пробегаемся по массиву в поисках нужного)))
         arrFilter = arr.filter(function(i) {
-            // console.log(i);
             return i.name == name && i.them == them && i.country == country;
         })
 
@@ -121,17 +123,35 @@ function filter() {
         name = $('.filter__item select[name="name"]').val(),
         them = $('.filter__item select[name="them"]').val(),
         country = $('.filter__item select[name="country"]').val(),
-        arrFilter == [];
+        arrFilter = [];
 
-        // пробегаемся по массиву в поисках нужного)))
-        $.each(arr, function(i) {
-            $.each(name, function(j) {
-                if(arr[i].name == name[j]) {
-                    arrFilter.push(arr[i]);
+        arrFilter = arr.filter(function(i) {
+            $.each(name, function(k) {
+                if(name[k] == i.name) {
+                    name2 = '';
+                    name2 = name[k];
+                    return;
                 }
             })
+
+            $.each(them, function(k) {
+                if(them[k] == i.them) {
+                    them2 = '';
+                    them2 = them[k];
+                    return;
+                }
+            })
+
+            $.each(country, function(k) {
+                if(country[k] == i.country) {
+                    country2 = '';
+                    country2 = country[k];
+                    return;
+                }
+            })
+
+            return i.name == name2 && i.them == them2 && i.country == country2;
         })
-        console.log(arrFilter);
 
         // и снова выводим карточки
         card(arrFilter);
