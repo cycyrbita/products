@@ -104,9 +104,6 @@ function filter() {
     let name = $('.filter__item select[name="name"]').val(),
         them = $('.filter__item select[name="them"]').val(),
         country = $('.filter__item select[name="country"]').val(),
-        name2 = '',
-        them2 = '',
-        country2 = '',
         arrFilter = [];
 
         // пробегаемся по массиву в поисках нужного)))
@@ -120,15 +117,22 @@ function filter() {
     // при изменении полей фильтра
     $('.filter__item select').change(function() {
         // перезаписываем переменные
+        let name2 = '',
+            them2 = '',
+            country2 = '';
+        
         name = $('.filter__item select[name="name"]').val(),
         them = $('.filter__item select[name="them"]').val(),
         country = $('.filter__item select[name="country"]').val(),
         arrFilter = [];
 
         arrFilter = arr.filter(function(i) {
+            name2 = '',
+            them2 = '',
+            country2 = '';
+
             $.each(name, function(k) {
                 if(name[k] == i.name) {
-                    name2 = '';
                     name2 = name[k];
                     return;
                 }
@@ -136,7 +140,6 @@ function filter() {
 
             $.each(them, function(k) {
                 if(them[k] == i.them) {
-                    them2 = '';
                     them2 = them[k];
                     return;
                 }
@@ -144,13 +147,45 @@ function filter() {
 
             $.each(country, function(k) {
                 if(country[k] == i.country) {
-                    country2 = '';
                     country2 = country[k];
                     return;
                 }
             })
+            
+            if(name2 == '' && them2 == '' && country2 != '') {
+                console.log(1);
+                return i.country == country2;
+            }
+            
+            if(name2 != '' && them2 == '' && country2 == '') {
+                console.log(2);
+                return i.name == name2;
+            }
 
-            return i.name == name2 && i.them == them2 && i.country == country2;
+            if(name2 == '' && them2 != '' && country2 == '') {
+                console.log(3);
+                return i.them == them2;
+            }
+
+            if(name2 != '' && them2 != '' && country2 == '') {
+                console.log(4);
+                return i.name == name2 && i.them == them2;
+            }
+
+            if(name2 != '' && them2 == '' && country2 != '') {
+                console.log(5);
+                return i.name == name2 && i.country == country2;
+            }
+
+            if(name2 == '' && them2 != '' && country2 != '') {
+                console.log(6);
+                return i.country == country2 && i.them == them2;
+            }
+
+            if(name2 != '' && them2 != '' && country2 != '') {
+                console.log(7);
+                return i.name == name2 && i.them == them2 && i.country == country2;
+            }
         })
 
         // и снова выводим карточки
