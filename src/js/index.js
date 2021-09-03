@@ -146,13 +146,20 @@ function filter() {
                 if(them[k] == i.them) {
                     them2 = them[k];
                     return;
+                } else if (them[k] == '') {
+                    them2 = '';
+                } else {
+                    them2 = them[0];
                 }
-            })
 
             $.each(country, function(k) {
                 if(country[k] == i.country) {
                     country2 = country[k];
                     return;
+                } else if (country[k] == '') {
+                    country2 = '';
+                } else {
+                    country2 = country[0];
                 }
             })
             
