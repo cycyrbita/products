@@ -135,6 +135,10 @@ function filter() {
                 if(name[k] == i.name) {
                     name2 = name[k];
                     return;
+                } else if (name[k] == '') {
+                    name2 = '';
+                } else {
+                    name2 = name[0];
                 }
             })
 
