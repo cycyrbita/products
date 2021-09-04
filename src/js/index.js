@@ -102,99 +102,159 @@ function checkFields(elem) {
 function filter() {
     // создаем переменные
     let name = $('.filter__item select[name="name"]').val(),
+        name2 = '',
         them = $('.filter__item select[name="them"]').val(),
+        them2 = '',
         country = $('.filter__item select[name="country"]').val(),
+        country2 = '',
         arrFilter = [];
 
-        // пробегаемся по массиву в поисках нужного)))
-        arrFilter = arr.filter(function(i) {
-            return i.name == name && i.them == them && i.country == country;
-        })
+    // пробегаемся по массиву в поисках нужного)))
+    arrFilter = arr.filter(function(i) {
+        for(let k = 0; k < name.length; k++) {
+            if(name[k] == i.name) {
+                name2 = name[k];
+            } else if(name[k] == undefined) {
+                name2 = false;
+            }
+        }
 
+        for(let k = 0; k < them.length; k++) {
+            if(them[k] == i.them) {
+                them2 = them[k];
+            }  else if(them[k] == undefined) {
+                them2 = false;
+            }
+        }
+
+        for(let k = 0; k < country.length; k++) {
+            if(country[k] == i.country) {
+                country2 = country[k];
+            }  else if(country[k] == undefined) {
+                country2 = false;
+            }
+        }
+
+        if(name2 == false && them2 == false && country2 != false) {
+            return i.country == country2;
+        }
+        
+        if(name2 != false && them2 == false && country2 == false) {
+            return i.name == name2;
+        }
+
+        if(name2 == false && them2 != false && country2 == false) {
+            return i.them == them2;
+        }
+
+        if(name2 != false && them2 != false && country2 == false) {
+            return i.name == name2 && i.them == them2;
+        }
+
+        if(name2 != false && them2 == false && country2 != false) {
+            return i.name == name2 && i.country == country2;
+        }
+
+        if(name2 == false && them2 != false && country2 != false) {
+            return i.country == country2 && i.them == them2;
+        }
+
+        if(name2 != false && them2 != false && country2 != false) {
+            return i.name == name2 && i.them == them2 && i.country == country2;
+        }
+    })
+        
     // выводим карточки
     card(arrFilter);
 
     // при изменении полей фильтра
     $('.filter__item select').change(function() {
         // перезаписываем переменные
-        let name2 = '',
-            them2 = '',
-            country2 = '';
-        
         name = $('.filter__item select[name="name"]').val(),
+        name2 = '',
         them = $('.filter__item select[name="them"]').val(),
+        them2 = '',
         country = $('.filter__item select[name="country"]').val(),
+        country2 = '',
         arrFilter = [];
 
+        // пробегаемся по массиву в поисках нужного)))
         arrFilter = arr.filter(function(i) {
-            name2 = '',
-            them2 = '',
-            country2 = '';
-
-            $.each(name, function(k) {
+            for(let k = 0; k < name.length; k++) {
                 if(name[k] == i.name) {
                     name2 = name[k];
-                    return;
-                } else if (name[k] == '') {
-                    name2 = '';
+                    break;
+                } else if(name[k] == undefined) {
+                    name2 = false;
+                    break;
                 } else {
-                    name2 = name[0];
+                    
                 }
-            })
+            }
 
-            $.each(them, function(k) {
+            for(let k = 0; k < them.length; k++) {
                 if(them[k] == i.them) {
                     them2 = them[k];
-                    return;
-                } else if (them[k] == '') {
-                    them2 = '';
+                    break;
+                }  else if(them[k] == undefined) {
+                    them2 = false;
+                    break;
                 } else {
-                    them2 = them[0];
+                    
                 }
+            }
 
-            $.each(country, function(k) {
+            for(let k = 0; k < country.length; k++) {
                 if(country[k] == i.country) {
                     country2 = country[k];
-                    return;
-                } else if (country[k] == '') {
-                    country2 = '';
+                    break;
+                }  else if(country[k] == undefined) {
+                    country2 = false;
+                    break;
                 } else {
-                    country2 = country[0];
+                    
                 }
-            })
-            
-            if(name2 == '' && them2 == '' && country2 != '') {
-                console.log(1);
+            }
+
+            if(name2 == false && them2 == false && country2 != false) {
+                console.log('1');
+                
                 return i.country == country2;
             }
             
-            if(name2 != '' && them2 == '' && country2 == '') {
-                console.log(2);
+            if(name2 != false && them2 == false && country2 == false) {
+                console.log('2');
+                
                 return i.name == name2;
             }
 
-            if(name2 == '' && them2 != '' && country2 == '') {
-                console.log(3);
+            if(name2 == false && them2 != false && country2 == false) {
+                console.log('3');
+                
                 return i.them == them2;
             }
 
-            if(name2 != '' && them2 != '' && country2 == '') {
-                console.log(4);
+            if(name2 != false && them2 != false && country2 == false) {
+                console.log('4');
+                
                 return i.name == name2 && i.them == them2;
             }
 
-            if(name2 != '' && them2 == '' && country2 != '') {
-                console.log(5);
+            if(name2 != false && them2 == false && country2 != false) {
+                console.log('5');
+                
                 return i.name == name2 && i.country == country2;
             }
 
-            if(name2 == '' && them2 != '' && country2 != '') {
-                console.log(6);
+            if(name2 == false && them2 != false && country2 != false) {
+                console.log('6');
+                
                 return i.country == country2 && i.them == them2;
             }
 
-            if(name2 != '' && them2 != '' && country2 != '') {
-                console.log(7);
+            if(name2 != false && them2 != false && country2 != false) {
+                console.log('7');
+                
                 return i.name == name2 && i.them == them2 && i.country == country2;
             }
         })
