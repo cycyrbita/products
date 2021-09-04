@@ -2,6 +2,7 @@
 .products {
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
     flex-grow: 1;
     margin-right: -7.5px;
     margin-left: -7.5px;

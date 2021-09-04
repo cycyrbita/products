@@ -12,13 +12,14 @@
                     <div class="filter__body">
                         <div class="filter__item">
                             <label>
-                                <input type="text" placeholder="Поиск">
+                                <input type="text" name="search" placeholder="Поиск" value="">
                             </label>
                         </div>
                         <div class="filter__item">
                             <label>
                                 <p class="filter__item-title">Название</p>
                                 <select multiple="multiple" name="name">
+                                    <option value="0">0</option>
                                     <option value="Artrovex">Artrovex</option>
                                     <option value="Alcotox">Alcotox</option>
                                     <option value="Cardiol">Cardiol</option>
@@ -48,7 +49,7 @@
                             <label>
                                 <p class="filter__item-title">Страна</p>
                                 <select multiple="multiple" name="country">
-                                    <option value="Россия">Россия</option>
+                                    <option value="Россия" selected>Россия</option>
                                     <option value="Америка" selected>Америка</option>
                                     <option value="Мексика">Мексика</option>
                                     <option value="Колумбия">Колумбия</option>

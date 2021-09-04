@@ -2,6 +2,13 @@
 let arr = [
     {
         "id": "7",
+        "name": "0",
+        "them": "Паразиты",
+        "country": "Филиппины",
+        "img": "../media/2021_08_26_18_23_36166956.png"
+    },
+    {
+        "id": "7",
         "name": "Artrovex",
         "them": "Паразиты",
         "country": "Филиппины",
@@ -107,64 +114,83 @@ function filter() {
         them2 = '',
         country = $('.filter__item select[name="country"]').val(),
         country2 = '',
+        searchArr = '',
+        search = $('.filter__item input[name="search"]').val(),
         arrFilter = [];
 
     // пробегаемся по массиву в поисках нужного)))
     arrFilter = arr.filter(function(i) {
-        for(let k = 0; k < name.length; k++) {
-            if(name[k] == i.name) {
-                name2 = name[k];
-            } else if(name[k] == undefined) {
-                name2 = false;
+        // проверяем что в поле name
+        if(name.length == 0) {
+            name2 = false;
+        } else {
+            for(let k = 0; k <= name.length; k++) {
+                if(name[k] == i.name) {
+                    name2 = name[k];
+                    break;
+                } else {
+                    name2 = true;
+                }
             }
         }
 
-        for(let k = 0; k < them.length; k++) {
-            if(them[k] == i.them) {
-                them2 = them[k];
-            }  else if(them[k] == undefined) {
-                them2 = false;
+        // проверяем что в поле them
+        if(them.length == 0) {
+            them2 = false;
+        } else {
+            for(let k = 0; k <= them.length; k++) {
+                if(them[k] == i.them) {
+                    them2 = them[k];
+                    break;
+                } else {
+                    them2 = true;
+                }
             }
         }
 
-        for(let k = 0; k < country.length; k++) {
-            if(country[k] == i.country) {
-                country2 = country[k];
-            }  else if(country[k] == undefined) {
-                country2 = false;
+        // проверяем что в поле country
+        if(country.length == 0) {
+            country2 = false;
+        } else {
+            for(let k = 0; k <= country.length; k++) {
+                if(country[k] == i.country) {
+                    country2 = country[k];
+                    break;
+                } else {
+                    country2 = true;
+                }
             }
         }
 
+        // прошу меня простить за тот пиздец который сейчас пойдет ниже
         if(name2 == false && them2 == false && country2 != false) {
             return i.country == country2;
         }
-        
         if(name2 != false && them2 == false && country2 == false) {
             return i.name == name2;
         }
-
         if(name2 == false && them2 != false && country2 == false) {
             return i.them == them2;
         }
-
         if(name2 != false && them2 != false && country2 == false) {
             return i.name == name2 && i.them == them2;
         }
-
         if(name2 != false && them2 == false && country2 != false) {
             return i.name == name2 && i.country == country2;
         }
-
         if(name2 == false && them2 != false && country2 != false) {
             return i.country == country2 && i.them == them2;
         }
-
         if(name2 != false && them2 != false && country2 != false) {
             return i.name == name2 && i.them == them2 && i.country == country2;
         }
+        if(name2 == true || them2 == true || country2 == true) {
+            return;
+        }
+        // тут мой пиздец заканчивается
     })
-        
-    // выводим карточки
+
+    // и снова выводим карточки
     card(arrFilter);
 
     // при изменении полей фильтра
@@ -177,96 +203,126 @@ function filter() {
         country = $('.filter__item select[name="country"]').val(),
         country2 = '',
         arrFilter = [];
+        
 
         // пробегаемся по массиву в поисках нужного)))
         arrFilter = arr.filter(function(i) {
-            for(let k = 0; k < name.length; k++) {
-                if(name[k] == i.name) {
-                    name2 = name[k];
-                    break;
-                } else if(name[k] == undefined) {
-                    name2 = false;
-                    break;
-                } else {
-                    
+            // проверяем что в поле name
+            if(name.length == 0) {
+                name2 = false;
+            } else {
+                for(let k = 0; k <= name.length; k++) {
+                    if(name[k] == i.name) {
+                        name2 = name[k];
+                        break;
+                    } else {
+                        name2 = true;
+                    }
                 }
             }
 
-            for(let k = 0; k < them.length; k++) {
-                if(them[k] == i.them) {
-                    them2 = them[k];
-                    break;
-                }  else if(them[k] == undefined) {
-                    them2 = false;
-                    break;
-                } else {
-                    
+            // проверяем что в поле them
+            if(them.length == 0) {
+                them2 = false;
+            } else {
+                for(let k = 0; k <= them.length; k++) {
+                    if(them[k] == i.them) {
+                        them2 = them[k];
+                        break;
+                    } else {
+                        them2 = true;
+                    }
                 }
             }
 
-            for(let k = 0; k < country.length; k++) {
-                if(country[k] == i.country) {
-                    country2 = country[k];
-                    break;
-                }  else if(country[k] == undefined) {
-                    country2 = false;
-                    break;
-                } else {
-                    
+            // проверяем что в поле country
+            if(country.length == 0) {
+                country2 = false;
+            } else {
+                for(let k = 0; k <= country.length; k++) {
+                    if(country[k] == i.country) {
+                        country2 = country[k];
+                        break;
+                    } else {
+                        country2 = true;
+                    }
                 }
             }
 
+            // прошу меня простить за тот пиздец который сейчас пойдет ниже
             if(name2 == false && them2 == false && country2 != false) {
-                console.log('1');
-                
                 return i.country == country2;
             }
-            
             if(name2 != false && them2 == false && country2 == false) {
-                console.log('2');
-                
                 return i.name == name2;
             }
-
             if(name2 == false && them2 != false && country2 == false) {
-                console.log('3');
-                
                 return i.them == them2;
             }
-
             if(name2 != false && them2 != false && country2 == false) {
-                console.log('4');
-                
                 return i.name == name2 && i.them == them2;
             }
-
             if(name2 != false && them2 == false && country2 != false) {
-                console.log('5');
-                
                 return i.name == name2 && i.country == country2;
             }
-
             if(name2 == false && them2 != false && country2 != false) {
-                console.log('6');
-                
                 return i.country == country2 && i.them == them2;
             }
-
             if(name2 != false && them2 != false && country2 != false) {
-                console.log('7');
-                
                 return i.name == name2 && i.them == them2 && i.country == country2;
             }
+            if(name2 == true || them2 == true || country2 == true) {
+                return;
+            }
+            // тут мой пиздец заканчивается
         })
 
-        // и снова выводим карточки
-        card(arrFilter);
+        search = $('.filter__item input[name="search"]').val();
+
+        if(search != '') {
+            searchArr = arrFilter.filter(function(el) {
+                for(let field in el) {
+                    if(el[field].toLowerCase().indexOf(search) > -1) {
+                        return true;
+                    }
+                }
+                return false;
+            });
+
+            // и снова выводим карточки
+            card(searchArr);
+        } else {
+
+            // и снова выводим карточки
+            card(arrFilter);
+        }
+    })
+
+    $('.filter__item input[name="search"]').keyup(function() {
+        search = $(this).val().toLowerCase();
+
+        if(search != '') {
+            searchArr = arrFilter.filter(function(el) {
+                for(let field in el) {
+                    if(el[field].toLowerCase().indexOf(search) > -1) {
+                        return true;
+                    }
+                }
+                return false;
+            });
+
+            // и снова выводим карточки
+            card(searchArr);
+        } else {
+
+            // и снова выводим карточки
+            card(arrFilter);
+        }
     })
 }
 
 $(document).ready(function() {
     $('input, select, textarea').styler();
-    
     // выводим карточки
     filter();
 
@@ -274,7 +330,8 @@ $(document).ready(function() {
     $('body').on('click', '.js-products__head-edits', function() {
         $('body').append(allModal['products']);
         $('.modal input, .modal select, .modal textarea').styler();
-        $('.modal').attr('data-id', $(this).parents('.products__item').attr('data-id')); 
+        $('.modal').attr('data-id', $(this).parents('.products__item').attr('data-id'));
+        $('body').addClass('overflow');
     })
 
     // открываем модалку добавления новой карточки
@@ -282,11 +339,23 @@ $(document).ready(function() {
         $('body').append(allModal['newCard']);
         $('.modal input, .modal select, .modal textarea').styler();
         $thisId = $(this).parents('.products__item').attr('data-id');
+        $('body').addClass('overflow');
     })
 
     // скрываем модалку редактирования карточки
     $('body').on('click', '.js-modal__close', function() {
         $(this).parents('.modal').remove();
+        $('body').addClass('overflow');
+    })
+
+    // скрываем модалку редактирования карточки
+    $('body').on('click', '.js-filter__close', function() {
+        $(this).parents('.js-filter').toggleClass('visible');
+        if($('body').hasClass('overflow')) {
+            $('body').removeClass('overflow')
+        } else {
+            $('body').addClass('overflow')
+        }
     })
 
     // скрываем модалку по пустому месту
@@ -294,7 +363,7 @@ $(document).ready(function() {
         var div = $('.modal__wrap');
         if (!div.is(e.target) && div.has(e.target).length === 0) {
             $(this).remove();
-            $('body, html').css('overflow', 'visible');
+            $('body').removeClass('overflow')
         }
     });
 
