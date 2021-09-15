@@ -99,6 +99,31 @@
     }
 }
 
+.filter__checkbox {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    cursor: pointer;
+
+    & > span {
+        margin-right: 5px;
+        color: #8e8e8e;
+    }
+
+    .jq-checkbox {
+        width: 25px;
+        height: 25px;
+    }
+
+    .jq-checkbox.checked .jq-checkbox__div {
+        width: 13px;
+        height: 8px;
+        border-width: 4px;
+        margin: 6px 0 0 5px;
+    }
+}
+
 @media (max-width: 768px) {
     .filter {
         width: 180px;
